@@ -3,6 +3,8 @@ require 'sinatra'
 $:.unshift File.expand_path('../lib', __FILE__)
 require 'item'
 
+set :haml, :format => :html5
+
 error Neopets::Item::ItemNotFound do
   "Item not found"
 end
