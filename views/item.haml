@@ -1,0 +1,9 @@
+%img{:src => @item.image_url}
+%br
+Shop ID:
+= @item.shop_id
+%br
+%ul#timestamps
+  - @item.timestamps.each do |timestamp|
+    %li= format_timestamp(timestamp)
+
