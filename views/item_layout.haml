@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title
+      Shop Warlock:
+      - if @item
+        = @item.name
+      - else
+        Find Neopets items before they restock
+  %body
+    %form{:action => "/items", :method => 'GET'}
+      %input{:type => 'text', :name => 'name', :placeholder => 'Enter an item name', :value => (@item ? @item.name : nil)}
+      %input{:type => 'submit', :value => 'Find item'}
+
+    = yield
+
