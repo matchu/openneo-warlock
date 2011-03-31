@@ -7,6 +7,6 @@
         %span Visit shop
     %h3 Today, this item will restock at&hellip;
     %ul#timestamps
-      - @item.timestamps.each do |timestamp|
-        %li= format_timestamp(timestamp)
+      - @timestamps.each do |timestamp|
+        %li{:class => timestamp_classname(timestamp)}= format_timestamp(timestamp)
 
