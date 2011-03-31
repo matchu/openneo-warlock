@@ -1,0 +1,27 @@
+@import compass/utilities/links/hover-link
+@import compass/reset/utilities
+
+body
+  background: hsl(220, 30, 25)
+  margin: 0 auto
+  text-align: center
+  width: 800px
+
+h1
+  background:
+    image: image-url('zombom.png')
+    position: top right
+    repeat: no-repeat
+  font-family: Bevan, arial, serif
+  font-size: 400%
+  font-weight: normal
+  margin-bottom: 0
+  padding-right: image-width('zombom.png')
+
+  a
+    +hover-link
+    color: white
+
+form
+  +reset-box-model
+
