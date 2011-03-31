@@ -8,14 +8,16 @@
       - else
         Find Neopets items before they restock
     <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     %link{:type => 'text/css', :rel => 'stylesheet', :href => '/stylesheets/item.css'}
   %body
-    %h1
-      %a{:href => '/'} Shop Warlock
+    %header#main-header
+      %h1
+        %a{:href => '/'} Shop Warlock
 
-    %form{:action => "/items", :method => 'GET'}
-      %input{:type => 'text', :name => 'name', :placeholder => 'Enter an item name', :value => (@item ? @item.name : nil)}
-      %input{:type => 'submit', :value => 'Find item', :class => 'button blue'}
+      %form{:action => "/items", :method => 'GET'}
+        %input{:type => 'text', :name => 'name', :placeholder => 'Enter an item name', :value => (@item ? @item.name : nil)}
+        %input{:type => 'submit', :value => 'Find item', :class => 'button blue'}
 
     = yield
 

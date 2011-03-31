@@ -1,10 +1,12 @@
 - if @item
-  %img{:src => @item.image_url}
-  %br
-  Shop ID:
-  = @item.shop_id
-  %br
-  %ul#timestamps
-    - @item.timestamps.each do |timestamp|
-      %li= format_timestamp(timestamp)
+  %article#item
+    %header#item-header
+      %h2= @item.name
+      %a{:href => "http://www.neopets.com/objects.phtml?type=shop&obj_type=#{@item.shop_id}"}
+        %img{:src => @item.image_url}
+        %span Visit shop
+    %h3 Today, this item will restock at&hellip;
+    %ul#timestamps
+      - @item.timestamps.each do |timestamp|
+        %li= format_timestamp(timestamp)
 
