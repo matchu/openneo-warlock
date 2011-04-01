@@ -13,7 +13,7 @@ $('#item-form').submit(function (e) {
 var shareYourStory = $('#share-your-story');
 var commentsEl = $('#comments');
 
-shareYourStory.attr('href', '#').click(function (e) {
+shareYourStory.attr('href', 'http://warlock.openneo.net/#disqus_thread').click(function (e) {
   e.preventDefault();
   var nowVisible = commentsEl.is(':hidden');
   commentsEl.slideToggle(500);
