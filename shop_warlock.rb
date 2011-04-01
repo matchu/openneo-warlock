@@ -8,6 +8,8 @@ require 'item'
 set :root, File.dirname(__FILE__)
 set :haml, :format => :html5
 
+TIMEZONE = TZInfo::Timezone.get('America/Los_Angeles')
+
 configure do
   Compass.add_project_configuration(File.join(Sinatra::Application.root, 'config', 'compass.config'))
 end
@@ -60,7 +62,7 @@ helpers do
   end
 
   def timestamp_expiry_stylesheet
-    now = Time.now
+    now = TIMEZONE.utc_to_local(Time.now.utc)
 
     expired_classes = []
     0.upto(now.hour - 1) do |expired_hour|
