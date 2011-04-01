@@ -13,7 +13,7 @@ configure do
 end
 
 error Neopets::Item::ItemNotFound do
-  "Item not found"
+  haml :item_not_found, :layout => :item_layout
 end
 
 get '/stylesheets/:name.css' do
@@ -27,8 +27,9 @@ end
 
 ['/items/:name', '/items'].each do |path|
   get path do
-    if params[:name] && !params[:name].empty?
-      @item = Item.fetch(params[:name])
+    @item_name = params[:name]
+    if @item_name && !@item_name.empty?
+      @item = Item.fetch(@item_name)
       @timestamps = @item.timestamps.map { |seconds| parse_timestamp(seconds) }
     end
     haml :item, :layout => :item_layout

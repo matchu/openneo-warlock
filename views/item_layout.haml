@@ -17,7 +17,7 @@
         %a{:href => '/'} Shop Warlock
 
       %form{:action => "/items", :method => 'GET'}
-        %input{:type => 'text', :name => 'name', :placeholder => 'Enter an item name', :value => (@item ? @item.name : nil)}
+        %input{:type => 'text', :name => 'name', :placeholder => 'Enter an item name', :value => @item_name}
         %input{:type => 'submit', :value => 'Find item', :class => 'button blue'}
 
     = yield

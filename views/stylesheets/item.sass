@@ -9,6 +9,8 @@
 $background-color: hsl(220, 30, 25)
 $container-width: 800px
 $content-width: 760px
+$content-h-padding: 24px
+$content-inner-width: $content-width - (2 * $content-h-padding)
 $standard-border-color: hsl(220, 30, 10)
 
 body
@@ -75,7 +77,7 @@ $item-header-margin: 12px
 $item-header-outer-width: $item-header-width + $item-header-border-width + $item-header-margin
 $item-list-width: $content-width - $item-header-outer-width
 
-#item
+#content
   +border-radius(0 0 12px 12px)
   +clearfix
   background: white
@@ -83,23 +85,30 @@ $item-list-width: $content-width - $item-header-outer-width
   clear: both
   display: block
   margin: 0 auto
-  padding-bottom: 2em
-  width: $content-width
+  padding: 1em $content-h-padding 2em
+  width: $content-inner-width
 
-  ul
-    +horizontal-list
-    float: left
-    width: $item-list-width
+  &.item
+    padding: 0 0 2em 0
+    width: $content-width
 
-    li
-      border:
-        color: #aaa
-        style: solid
-        width: 1px
-      margin: 4px
-      padding: 0
-      text-align: center
-      width: 80px
+    ul
+      +horizontal-list
+      float: left
+      width: $item-list-width
+
+      li
+        border:
+          color: #aaa
+          style: solid
+          width: 1px
+        margin: 4px
+        padding: 0
+        text-align: center
+        width: 80px
+
+  &.item-not-found
+    text-align: center
 
 #item-header
   background: #eee
