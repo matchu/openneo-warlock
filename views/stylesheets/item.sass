@@ -15,6 +15,7 @@ $standard-border-color: hsl(220, 30, 10)
 
 body
   background: $main-bg-color
+  color: white
   font-family: 'Droid Sans', arial, sans-serif
   margin: 0 auto
   width: $container-width
@@ -141,7 +142,6 @@ $intro-module-width: $intro-module-outer-width - (2 * $intro-module-padding)
 #intro
   +clearfix
   clear: both
-  color: white
   padding-top: 2em
 
   h2, h3, h4, h5, h6
@@ -186,9 +186,11 @@ $intro-module-width: $intro-module-outer-width - (2 * $intro-module-padding)
   +border-radius(12px)
   background: $intro-module-bg-color
   clear: both
-  color: white
   font-weight: bold
   margin: .5em 0
   text-align: center
   padding: 6px 12px
+
+#comments
+  display: none
 

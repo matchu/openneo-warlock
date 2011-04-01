@@ -10,3 +10,17 @@ $('#item-form').submit(function (e) {
   window.location = '/items/' + encodeURIComponent(itemName).replace(/%20/g, '+');
 });
 
+var shareYourStory = $('#share-your-story');
+var commentsEl = $('#comments');
+
+shareYourStory.attr('href', '#').click(function (e) {
+  e.preventDefault();
+  var nowVisible = commentsEl.is(':hidden');
+  commentsEl.slideToggle(500);
+  window.localStorage.setItem('comments_visible', nowVisible);
+});
+
+if(window.localStorage.getItem('comments_visible') == 'true') {
+  commentsEl.show();
+}
+
