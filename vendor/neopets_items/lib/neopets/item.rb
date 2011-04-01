@@ -28,7 +28,9 @@ module Neopets
     protected
 
     def load_html!
-      self.class.get(search_url).body
+      body = self.class.get(search_url).body
+      puts "Loaded #{search_url}"
+      body
     end
 
     def parameterized_name

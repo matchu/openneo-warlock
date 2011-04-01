@@ -4,9 +4,12 @@ require 'haml'
 
 $:.unshift File.expand_path('../lib', __FILE__)
 require 'item'
+require 'cache_helper'
 
 set :root, File.dirname(__FILE__)
 set :haml, :format => :html5
+
+CACHE_ROOT = Sinatra::Application.root
 
 TIMEZONE = TZInfo::Timezone.get('America/Los_Angeles')
 
@@ -30,12 +33,17 @@ end
 ['/items/:name', '/items'].each do |path|
   get path do
     @item_name = params[:name]
-    if @item_name && !@item_name.empty?
-      @item = Item.fetch(@item_name)
+    @item = Item.new(@item_name)
+    if @item_name && !@item_name.empty? && !item_cached?(@item)
+      @item.load!
       @timestamps = @item.timestamps.map { |seconds| parse_timestamp(seconds) }
     end
     haml :item, :layout => :item_layout
   end
+end
+
+def item_cached?(item)
+  CacheHelper::Sinatra::fragment_exists?(item.key_today)
 end
 
 def parse_timestamp(seconds)
@@ -43,10 +51,6 @@ def parse_timestamp(seconds)
 end
 
 helpers do
-  def capitalize(phrase)
-    phrase.split(' ').map { |word| word[0].upcase + word[1..-1] }.join(' ')
-  end
-
   # Formats integer representing the second of the day, e.g. 123, to the HH:MM
   # format, e.g. 02:03
   def format_timestamp(timestamp)

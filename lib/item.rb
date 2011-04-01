@@ -6,6 +6,10 @@ class Item < Neopets::Item
   TIMESTAMP_DATE_FORMAT = '%Y%m%d'
   TIMEZONE = TZInfo::Timezone.get('America/Los_Angeles')
 
+  def formal_name
+    name.split(' ').map { |word| word[0].upcase + word[1..-1].downcase }.join(' ')
+  end
+
   def timestamps
     unless @timestamps
       @timestamps = []
@@ -22,11 +26,17 @@ class Item < Neopets::Item
     @timestamps
   end
 
+  def key_today
+    # Use a timezoned timestamp here to ensure that our date is based on NST,
+    # not UTC
+    local_time = TIMEZONE.utc_to_local(Time.now.utc)
+    "#{formal_name} " + local_time.strftime(TIMESTAMP_DATE_FORMAT)
+  end
+
   protected
 
   def timestamp_seed
-    local_time = TIMEZONE.utc_to_local(Time.now.utc)
-    Digest::MD5.hexdigest("#{name} " + local_time.strftime(TIMESTAMP_DATE_FORMAT)).hex
+    Digest::MD5.hexdigest(key_today).hex
   end
 end
 
