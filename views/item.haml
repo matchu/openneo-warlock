@@ -1,5 +1,5 @@
 - if @item
-  = cache @item.key_today, :max_age => 120 do
+  = cache @item.key_today do
     %article#content.item
       %header#item-header
         %h2= @item.formal_name
