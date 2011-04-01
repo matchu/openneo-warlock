@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    %meta{:charset => 'utf-8'}
     %title
       Shop Warlock:
       - if @item
@@ -21,4 +22,56 @@
         %input{:type => 'submit', :value => 'Find item', :class => 'button blue'}
 
     = yield
+
+    %section#intro
+      %article.intro-module
+        %h3 What do I do?
+        %ol
+          %li
+            Type in a Neopets item name to see
+            %strong when it will restock today
+          %li Head on over to the official shop
+          %li ???
+          %li Profit!
+
+      %article.intro-module
+        %h3 How does it work?
+        %p
+          Restocks aren't totally random, since TNT needs to keep the system
+          consistent and easy to debug.
+        %p
+          %strong A simple formula
+          dictates which items restock when, and, after serious data analysis
+          and quite a bit of luck, we worked it out. It's essentially a
+          predictable seed for the random number generator.
+          %a{:href => 'https://github.com/matchu/openneo-warlock/blob/master/vendor/neopets_items/lib/neopets/item.rb'}
+            Check out the source code if you're interested.
+        %p
+          I mean, magic. Warlock magic.
+
+      %article.intro-module
+        %h3 Users love the Warlock
+
+        %article
+          %q
+            Thanks for letting me help test Shop Warlock! My shop is stocked
+            with all sorts of goodies now :)
+          %span.author &mdash;Mika C
+
+        %article
+          %q
+            Got a Draik Egg on day two! YES!
+          %span.author &mdash;Jack G
+
+        %article
+          %q
+            THIS IS THE BEST THING EVER.
+          %span.author &mdash;Hannah K
+
+        %a#share-your-story{:href => '&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;&#x77;&#x65;&#x62;&#x6D;&#x61;&#x73;&#x74;&#x65;&#x72;&#x40;&#x6F;&#x70;&#x65;&#x6E;&#x6E;&#x65;&#x6F;&#x2E;&#x6E;&#x65;&#x74;'}
+          Share your story
+
+    %p#brought-to-you-by
+      Brought to you by the makers of
+      %a{:href => 'http://impress.openneo.net/'} Dress to Impress
 

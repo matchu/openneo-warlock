@@ -6,7 +6,7 @@
 @import compass/utilities/lists/horizontal-list
 @import compass/reset/utilities
 
-$background-color: hsl(220, 30, 25)
+$main-bg-color: hsl(220, 30, 25)
 $container-width: 800px
 $content-width: 760px
 $content-h-padding: 24px
@@ -14,7 +14,7 @@ $content-inner-width: $content-width - (2 * $content-h-padding)
 $standard-border-color: hsl(220, 30, 10)
 
 body
-  background: hsl(220, 30, 25)
+  background: $main-bg-color
   font-family: 'Droid Sans', arial, sans-serif
   margin: 0 auto
   width: $container-width
@@ -35,6 +35,12 @@ h1
   a
     +hover-link
     color: white
+
+a
+  color: lighten($main-bg-color, 50%)
+
+article
+  display: block
 
 form
   +reset-box-model
@@ -124,4 +130,64 @@ $item-list-width: $content-width - $item-header-outer-width
 
   span
     display: block
+
+$intro-module-count: 3
+$intro-module-bg-color: darken($main-bg-color, 10%)
+$intro-module-padding: 12px
+$intro-module-gutter: 12px
+$intro-module-outer-width: ($container-width - ($intro-module-gutter * ($intro-module-count - 1))) / $intro-module-count
+$intro-module-width: $intro-module-outer-width - (2 * $intro-module-padding)
+
+#intro
+  +clearfix
+  clear: both
+  color: white
+  padding-top: 2em
+
+  h2, h3, h4, h5, h6
+    text-shadow: 1px 1px 0 black
+
+  .intro-module
+    +border-radius(12px)
+    background: $intro-module-bg-color
+    float: left
+    height: 200px
+    margin-left: $intro-module-gutter
+    padding: $intro-module-padding
+    width: $intro-module-width
+
+    &:first-child
+      margin-left: 0
+
+    h3
+      margin-top: 0
+
+    p, article
+      font-size: 75%
+
+    li
+      font-size: 85%
+      margin-bottom: 1em
+
+    article
+      margin-bottom: 2em
+
+      span
+        display: block
+        font-style: italic
+        text-align: right
+
+#share-your-story
+  display: block
+  font-size: 75%
+  text-align: right
+
+#brought-to-you-by
+  +border-radius(12px)
+  background: $intro-module-bg-color
+  color: white
+  font-weight: bold
+  margin: .5em 0
+  text-align: center
+  padding: 6px 12px
 
