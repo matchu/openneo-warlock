@@ -40,6 +40,10 @@ def parse_timestamp(seconds)
 end
 
 helpers do
+  def capitalize(phrase)
+    phrase.split(' ').map { |word| word[0].upcase + word[1..-1] }.join(' ')
+  end
+
   # Formats integer representing the second of the day, e.g. 123, to the HH:MM
   # format, e.g. 02:03
   def format_timestamp(timestamp)

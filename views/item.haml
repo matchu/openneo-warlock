@@ -1,7 +1,7 @@
 - if @item
   %article#item
     %header#item-header
-      %h2= @item.name
+      %h2= capitalize @item.name
       %a{:href => "http://www.neopets.com/objects.phtml?type=shop&obj_type=#{@item.shop_id}"}
         %img{:src => @item.image_url}
         %span Visit shop
