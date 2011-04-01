@@ -34,9 +34,13 @@ end
   get path do
     @item_name = params[:name]
     @item = Item.new(@item_name)
-    if @item_name && !@item_name.empty? && !item_cached?(@item)
-      @item.load!
-      @timestamps = @item.timestamps.map { |seconds| parse_timestamp(seconds) }
+    if @item_name && !@item_name.empty?
+      if !item_cached?(@item)
+        @item.load!
+        @timestamps = @item.timestamps.map { |seconds| parse_timestamp(seconds) }
+      end
+    else
+      @item = nil
     end
     haml :item, :layout => :item_layout
   end
