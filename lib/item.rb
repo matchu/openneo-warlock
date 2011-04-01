@@ -4,6 +4,8 @@ require 'digest/md5'
 
 class Item < Neopets::Item
   TIMESTAMP_DATE_FORMAT = '%Y%m%d'
+  TIMEZONE = TZInfo::Timezone.get('America/Los_Angeles')
+
   def timestamps
     unless @timestamps
       @timestamps = []
@@ -23,8 +25,8 @@ class Item < Neopets::Item
   protected
 
   def timestamp_seed
-    p "#{name} " + Time.now.strftime(TIMESTAMP_DATE_FORMAT)
-    Digest::MD5.hexdigest("#{name} " + Time.now.strftime(TIMESTAMP_DATE_FORMAT)).hex
+    local_time = TIMEZONE.utc_to_local(Time.now.utc)
+    Digest::MD5.hexdigest("#{name} " + local_time.strftime(TIMESTAMP_DATE_FORMAT)).hex
   end
 end
 
