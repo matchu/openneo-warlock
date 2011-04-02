@@ -50,6 +50,10 @@ def item_cached?(item)
   CacheHelper::Sinatra::fragment_exists?(item.key_today)
 end
 
+def local_now
+  TIMEZONE.utc_to_local(Time.now.utc)
+end
+
 def parse_timestamp(seconds)
   [seconds / 60, seconds % 60]
 end
@@ -57,6 +61,12 @@ end
 helpers do
   # Formats integer representing the second of the day, e.g. 123, to the HH:MM
   # format, e.g. 02:03
+
+  def funny?
+    now = local_now
+    now.month == 4 && now.day == 1 && now.year == 2011
+  end
+
   def format_timestamp(timestamp)
     timestamp.map do |integer|
       integer.to_s.rjust(2, '0')
@@ -70,7 +80,7 @@ helpers do
   end
 
   def timestamp_expiry_stylesheet
-    now = TIMEZONE.utc_to_local(Time.now.utc)
+    now = local_now
 
     expired_classes = []
     0.upto(now.hour - 1) do |expired_hour|

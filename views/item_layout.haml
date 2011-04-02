@@ -20,6 +20,9 @@
     %meta{:content => "1524594421", :property => "fb:admins"}/
     = timestamp_expiry_stylesheet
   %body
+    - unless funny?
+      %p#funny.big-module
+        Happy April Fool's, 2011!
     %header#main-header
       %h1
         %a{:href => '/'} Shop Warlock
@@ -76,7 +79,7 @@
             THIS IS THE BEST THING IN THE WORLD. I'm gonna treasure this site forever :D
           %span.author &mdash;Hannah K
 
-    %p#brought-to-you-by
+    %p#brought-to-you-by.big-module
       Brought to you by the makers of
       %a{:href => 'http://impress.openneo.net/'} Dress to Impress
 
