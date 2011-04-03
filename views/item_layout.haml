@@ -21,8 +21,15 @@
     = timestamp_expiry_stylesheet
   %body
     - unless funny?
-      %p#funny.big-module
-        Happy April Fool's, 2011!
+      #funny.big-module
+        %h2 Happy April Fool's, 2011!
+        %p
+          Hope you enjoyed our totally fake restocking app. We're leaving it
+          here for fun, but please remember to totally disregard everything it
+          says. Thanks for using
+          = succeed ',' do
+            %a{:href => 'http://impress.openneo.net'} Dress to Impress
+          and see you next year!
     %header#main-header
       %h1
         %a{:href => '/'} Shop Warlock
